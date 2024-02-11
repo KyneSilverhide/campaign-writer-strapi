@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "credits",
+  "info": {
+    "singularName": "credit",
+    "pluralName": "credits",
+    "displayName": "Crédits"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nom": {
+      "type": "string",
+      "required": true
+    },
+    "Contact": {
+      "type": "email"
+    },
+    "Website": {
+      "type": "string"
+    },
+    "Role": {
+      "type": "enumeration",
+      "enum": [
+        "Rédaction",
+        "Traduction",
+        "Relecture",
+        "Validation"
+      ],
+      "required": true
+    },
+    "campagne": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::campagne.campagne",
+      "inversedBy": "credits"
+    }
+  }
+}

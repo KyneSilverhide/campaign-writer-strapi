@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sections",
+  "info": {
+    "singularName": "section",
+    "pluralName": "sections",
+    "displayName": "Section",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Titre": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "chapitre": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::chapitre.chapitre",
+      "inversedBy": "sections"
+    },
+    "personnages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::personnage.personnage"
+    },
+    "Contenu": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "lieus": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lieu.lieu"
+    }
+  }
+}

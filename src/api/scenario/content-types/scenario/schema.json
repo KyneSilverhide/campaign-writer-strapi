@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scenarios",
+  "info": {
+    "singularName": "scenario",
+    "pluralName": "scenarios",
+    "displayName": "Scénario",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "Titre": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Illustration": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "personnages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::personnage.personnage"
+    },
+    "chapitres": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::chapitre.chapitre",
+      "mappedBy": "scenario"
+    },
+    "campagne": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::campagne.campagne",
+      "inversedBy": "scenarios"
+    },
+    "Description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "standard"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "factions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::faction.faction"
+    },
+    "lieus": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lieu.lieu"
+    }
+  }
+}
