@@ -798,7 +798,7 @@ export interface ApiCampagneCampagne extends Schema.CollectionType {
     };
   };
   attributes: {
-    Titre: Attribute.String &
+    titre: Attribute.String &
       Attribute.Required &
       Attribute.Unique &
       Attribute.SetPluginOptions<{
@@ -806,11 +806,6 @@ export interface ApiCampagneCampagne extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    credits: Attribute.Relation<
-      'api::campagne.campagne',
-      'oneToMany',
-      'api::credit.credit'
-    >;
     personnages: Attribute.Relation<
       'api::campagne.campagne',
       'oneToMany',
@@ -821,7 +816,7 @@ export interface ApiCampagneCampagne extends Schema.CollectionType {
       'oneToMany',
       'api::scenario.scenario'
     >;
-    Description: Attribute.RichText &
+    description: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor.CKEditor',
         {
@@ -839,10 +834,21 @@ export interface ApiCampagneCampagne extends Schema.CollectionType {
       'oneToMany',
       'api::faction.faction'
     >;
-    lieuses: Attribute.Relation<
+    lieux: Attribute.Relation<
       'api::campagne.campagne',
       'oneToMany',
       'api::lieu.lieu'
+    >;
+    illustration: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    credits: Attribute.Relation<
+      'api::campagne.campagne',
+      'oneToMany',
+      'api::credit.credit'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -961,6 +967,11 @@ export interface ApiCreditCredit extends Schema.CollectionType {
       'api::credit.credit',
       'manyToOne',
       'api::campagne.campagne'
+    >;
+    scenario: Attribute.Relation<
+      'api::credit.credit',
+      'manyToOne',
+      'api::scenario.scenario'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1183,7 +1194,7 @@ export interface ApiScenarioScenario extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    Illustration: Attribute.Media &
+    illustration: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -1204,7 +1215,7 @@ export interface ApiScenarioScenario extends Schema.CollectionType {
       'manyToOne',
       'api::campagne.campagne'
     >;
-    Description: Attribute.RichText &
+    description: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor.CKEditor',
         {
@@ -1222,10 +1233,15 @@ export interface ApiScenarioScenario extends Schema.CollectionType {
       'oneToMany',
       'api::faction.faction'
     >;
-    lieus: Attribute.Relation<
+    lieux: Attribute.Relation<
       'api::scenario.scenario',
       'oneToMany',
       'api::lieu.lieu'
+    >;
+    credits: Attribute.Relation<
+      'api::scenario.scenario',
+      'oneToMany',
+      'api::credit.credit'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

@@ -36,6 +36,12 @@
       "relation": "manyToOne",
       "target": "api::campagne.campagne",
       "inversedBy": "credits"
+    },
+    "scenario": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::scenario.scenario",
+      "inversedBy": "credits"
     }
   }
 }
